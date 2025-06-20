@@ -1,0 +1,54 @@
+export class Combos {
+  name: string;
+  description: string;
+  image: string;
+  drinkIncluded: boolean;
+  category: string;
+
+  constructor(
+    name: string,
+    description: string,
+    image: string,
+    drinkIncluded: boolean = true,
+    category: string = "Combos"
+  ) {
+    this.name = name;
+    this.description = description;
+    this.image = image;
+    this.drinkIncluded = drinkIncluded;
+    this.category = category;
+  }
+}
+
+export const ComboSelection: Combos[] = [
+  new Combos(
+    "Solo Combo",
+    "1 pizza medium + 1 boisson 33cl",
+    "https://www.pizza.com/assets/img/solo-combo.jpg"
+  ),
+  new Combos(
+    "Duo Combo",
+    "2 pizzas medium + 2 boissons 33cl",
+    "https://www.pizza.com/assets/img/duo-combo.jpg"
+  ),
+  new Combos(
+    "Family Combo",
+    "2 pizzas large + 1 accompagnement + 1 boisson 1.5L",
+    "https://www.pizza.com/assets/img/family-combo.jpg"
+  ),
+  new Combos(
+    "Party Combo",
+    "3 pizzas large + 2 accompagnements + 2 boissons 1.5L",
+    "https://www.pizza.com/assets/img/party-combo.jpg"
+  ),
+  new Combos(
+    "Pizza & Wings Combo",
+    "1 pizza large + 6 wings + 1 boisson 1.5L",
+    "https://www.pizza.com/assets/img/wings-combo.jpg"
+  ),
+  new Combos(
+    "Mix Combo",
+    "1 panini + 1 petite pizza + 1 boisson 33cl",
+    "https://www.pizza.com/assets/img/mix-combo.jpg"
+  )
+];

@@ -1,0 +1,72 @@
+<script setup lang="ts">
+import { ref, computed } from "vue";
+import Card from '~/components/Ui/Card/Card.vue';
+import CardContent from '~/components/Ui/Card/Content.vue';
+import CardTitle from '~/components/Ui/Card/Title.vue';
+import { categories as rawCategories } from '~/composables/CategoriesFood';
+import { MenuCategory } from '@/entities/MenuCategory';
+import Sidebar from "./Sidebar.vue";
+
+const isSidebarOpen = ref(false);
+const selectedCategory = ref<MenuCategory | null>(null);
+
+const categories = computed<MenuCategory[]>(() =>
+  rawCategories.map((category, index) => ({
+    id: index + 1,
+    name: category.title,
+    description: category.description,
+    image: category.image
+  }))
+);
+
+const openSidebar = (category: MenuCategory) => {
+  selectedCategory.value = { ...category };
+  isSidebarOpen.value = true;
+};
+
+const closeSidebar = () => {
+  isSidebarOpen.value = false;
+};
+</script>
+
+<template>
+  <div class="min-h-screen bg-[#fffdf8] px-4 py-8">
+    <div class="text-2xl font-bold text-center text-gray-800 mb-8">
+      Commander Maintenant
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <Card v-for="category in categories" :key="category.id"
+        class="overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-md border-none bg-white shadow rounded-lg cursor-pointer"
+        @click="openSidebar(category)">
+        <img :src="category.image" :alt="category.name" class="w-full h-28 object-contain p-3" />
+
+        <CardContent class="text-center px-3 pb-4">
+          <CardTitle class="text-base font-semibold text-gray-800">
+            {{ category.name }}
+          </CardTitle>
+          <p class="text-xs text-gray-500 mt-1 line-clamp-2">
+            {{ category.description }}
+          </p>
+          <button
+            class="mt-3 text-[11px] bg-gradient-to-br from-yellow-200 via-red-100 to-orange-200 text-red-900 px-3 py-1 rounded-full shadow-sm border border-red-200 hover:scale-105 transition">
+            Voir les plats
+          </button>
+        </CardContent>
+      </Card>
+
+    </div>
+
+    <!-- Sidebar Component -->
+    <Sidebar :isOpen="isSidebarOpen" :category="selectedCategory" @close="closeSidebar" />
+  </div>
+</template>
+
+<style scoped>
+@media (max-width: 500px) {
+  .w-24 {
+    width: 4.5rem !important;
+    height: 4.5rem !important;
+  }
+}
+</style>
