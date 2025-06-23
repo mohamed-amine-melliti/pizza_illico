@@ -77,7 +77,6 @@ const isDialogOpen = ref(false)
     </div>
   </div>
 
-  <BrowserByCategories />
 </template>
 
 

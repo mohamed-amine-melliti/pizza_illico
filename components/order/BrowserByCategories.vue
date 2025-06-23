@@ -37,24 +37,22 @@ const closeSidebar = () => {
 
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
       <Card v-for="category in categories" :key="category.id"
-        class="overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-md border-none bg-white shadow rounded-lg cursor-pointer"
+        class="overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg border-none bg-gradient-to-br from-yellow-50 via-red-50 to-orange-50 shadow rounded-lg cursor-pointer active:scale-95"
         @click="openSidebar(category)">
         <img :src="category.image" :alt="category.name" class="w-full h-28 object-contain p-3" />
 
         <CardContent class="text-center px-3 pb-4">
-          <CardTitle class="text-base font-semibold text-gray-800">
+          <CardTitle class="text-base font-semibold text-gray-800 mb-2">
             {{ category.name }}
           </CardTitle>
-          <p class="text-xs text-gray-500 mt-1 line-clamp-2">
+          <p class="text-xs text-gray-600 line-clamp-2">
             {{ category.description }}
           </p>
-          <button
-            class="mt-3 text-[11px] bg-gradient-to-br from-yellow-200 via-red-100 to-orange-200 text-red-900 px-3 py-1 rounded-full shadow-sm border border-red-200 hover:scale-105 transition">
-            Voir les plats
-          </button>
+          <div class="mt-3 text-xs font-medium text-red-800 opacity-75">
+            Cliquez pour commander
+          </div>
         </CardContent>
       </Card>
-
     </div>
 
     <!-- Sidebar Component -->
@@ -68,5 +66,12 @@ const closeSidebar = () => {
     width: 4.5rem !important;
     height: 4.5rem !important;
   }
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 </style>

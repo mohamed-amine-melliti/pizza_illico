@@ -1,47 +1,31 @@
 <template>
   <div class="flex flex-col gap-3 w-full max-w-md mx-auto p-4">
-    <!-- First button: "Commander" -->
-    <!-- <Button
-      @click="openConnectDialog = true"
-      class="bg-black text-white font-semibold hover:bg-gray-800 transition py-2 rounded-md text-lg"
-    >
-      Commander
-    </Button> -->
 
-    <!-- Second button: "Suivre Commande" -->
-    <Button
-      @click="openFollowDialog = true"
-      class="bg-gray-900 text-white font-semibold hover:bg-gray-800 transition py-2 rounded-md text-lg"
-    >
+    <!-- Suivre Commande -->
+    <Button @click="openFollowDialog = true"
+      class="bg-gray-900 text-white font-semibold hover:bg-gray-800 transition py-2 rounded-md text-lg">
       Suivre Commande
     </Button>
 
+    <!-- Faire Commande -->
+    <Button @click="isSidebarOpen = true"
+      class="bg-gray-900 text-white font-semibold hover:bg-gray-800 transition py-2 rounded-md text-lg">
+      Faire Commande
+    </Button>
+
     <!-- Commander Dialog -->
-    <div
-      v-if="openConnectDialog"
-      class="fixed inset-0 z-[999] bg-gray-600 bg-opacity-50 flex justify-center items-center px-4"
-    >
+    <div v-if="openConnectDialog"
+      class="fixed inset-0 z-[999] bg-gray-600 bg-opacity-50 flex justify-center items-center px-4">
       <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-4xl mx-auto overflow-y-auto max-h-screen relative">
-        <!-- Close Button in the top right corner -->
-        <button
-          @click="openConnectDialog = false"
-          class="absolute top-4 right-4 text-gray-600 hover:text-gray-800 text-2xl font-bold"
-        >
-          &times;
-        </button>
+        <button @click="openConnectDialog = false"
+          class="absolute top-4 right-4 text-gray-600 hover:text-gray-800 text-2xl font-bold">&times;</button>
 
-        <!-- Title -->
         <h3 class="text-3xl font-bold mb-6 text-gray-800">Commander Dialog</h3>
+        <CreateOrdersDialog />
 
-        <!-- Your custom dialog content component -->
-        <CreateOrdersDialog/>
-
-        <!-- Close Button at the bottom -->
         <div class="mt-6 text-right">
-          <button
-            @click="openConnectDialog = false"
-            class="bg-black text-white py-3 px-6 rounded-lg hover:bg-gray-800 transition-all duration-200"
-          >
+          <button @click="openConnectDialog = false"
+            class="bg-black text-white py-3 px-6 rounded-lg hover:bg-gray-800 transition-all duration-200">
             Fermer
           </button>
         </div>
@@ -49,34 +33,26 @@
     </div>
 
     <!-- Suivre Commande Dialog -->
-    <div
-      v-if="openFollowDialog"
-      class="fixed inset-0 z-[999] bg-gray-600 bg-opacity-50 flex justify-center items-center px-4"
-    >
+    <div v-if="openFollowDialog"
+      class="fixed inset-0 z-[999] bg-gray-600 bg-opacity-50 flex justify-center items-center px-4">
       <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-4xl mx-auto overflow-y-auto max-h-screen relative">
-        <!-- Close Button in the top right corner -->
-        <button
-          @click="openFollowDialog = false"
-          class="absolute top-4 right-4 text-gray-600 hover:text-gray-800 text-2xl font-bold"
-        >
-          &times;
-        </button>
+        <button @click="openFollowDialog = false"
+          class="absolute top-4 right-4 text-gray-600 hover:text-gray-800 text-2xl font-bold">&times;</button>
 
-        <!-- Title -->
+        <SuivreCommande />
 
-        <!-- Custom content or logic for "Suivre Commande" -->
-          <SuivreCommande></SuivreCommande>
-        <!-- Close Button at the bottom -->
         <div class="mt-6 text-right">
-          <button
-            @click="openFollowDialog = false"
-            class="bg-gray-900 text-white py-3 px-6 rounded-lg hover:bg-gray-800 transition-all duration-200"
-          >
+          <button @click="openFollowDialog = false"
+            class="bg-gray-900 text-white py-3 px-6 rounded-lg hover:bg-gray-800 transition-all duration-200">
             Fermer
           </button>
         </div>
       </div>
     </div>
+
+    <!-- Sidebar Component -->
+    <Sidebar :isOpen="isSidebarOpen" :category="selectedCategory" @close="closeSidebar" />
+
   </div>
 </template>
 
@@ -84,10 +60,21 @@
 import { ref } from 'vue';
 import CreateOrdersDialog from '../order/CreateOrder.vue';
 import SuivreCommande from '../dialog/SuivreCommande.vue';
+import Sidebar from "../order/Sidebar.vue";
 
-const openConnectDialog = ref(false); // State to track Commander dialog
-const openFollowDialog = ref(false);  // State to track Suivre Commande dialog
+// Dialog states
+const openConnectDialog = ref(false);
+const openFollowDialog = ref(false);
+
+// Sidebar states
+const isSidebarOpen = ref(false);
+const selectedCategory = ref(null);
+
+const closeSidebar = () => {
+  isSidebarOpen.value = false;
+};
 </script>
+
 
 <style scoped>
 .dialog {
