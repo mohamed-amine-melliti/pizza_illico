@@ -22,7 +22,7 @@ const checkout = () => {
 </script>
 
 <template>
-  <div class="flex w-full flex-col">
+  <div class="flex w-full flex-col py-8 px-8 ">
     <header class="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
       <img src="https://illico-pizza.fr/static/assets/logo.png" style="max-width: 90px;" alt="Logo" />
 

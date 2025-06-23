@@ -17,7 +17,10 @@ const isDialogOpen = ref(false)
 <template>
   <HeaderOfOrderPage />
 
-  <div class="relative w-full min-h-[300px] sm:min-h-[400px] lg:min-h-[70vh] bg-[#fffdf8]">
+  <div
+  class="relative w-full min-h-[300px] sm:min-h-[400px] lg:min-h-[70vh] bg-[#fffdf8]
+         py-16 px-4 sm:py-24 sm:px-8 lg:py-[22rem] lg:px-[22rem]">
+
     <!-- Background Image -->
     <img
       src="https://res.cloudinary.com/justsalad/image/upload/g_auto/f_auto/q_auto/g_auto/v1734616146/seasonalmenus/APP_Winter_Sweet-Chicken_h5nugw?_a=BAVAZGDW0"
