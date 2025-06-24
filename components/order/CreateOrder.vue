@@ -2,7 +2,6 @@
 import { ref, reactive, toRaw, h } from 'vue';
 
 // UI & Toast
-import { useToast } from '../Ui/toast/use-toast';
 const { toast } = useToast();
 
 // Components
@@ -18,7 +17,7 @@ import ExtraSelection from '../host-special/ExtraSelection.vue';
 
 // Order state & composables
 let {
-  Choice,
+ // Choice,
   orderValues,
   isLoading,
   steps,
