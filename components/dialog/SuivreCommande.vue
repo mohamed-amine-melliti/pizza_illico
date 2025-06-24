@@ -9,7 +9,8 @@ import {
   StepperTitle,
   StepperDescription,
   StepperSeparator
-} from '@/components/ui/Stepper/index'
+} from '~/lib/registry/new-york/ui/stepper'
+
 
 // Reactive state for command ID input
 const commandIdInput = ref('')
