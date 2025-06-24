@@ -19,7 +19,7 @@ const isDialogOpen = ref(false)
 
   <div
   class="relative w-full min-h-[300px] sm:min-h-[400px] lg:min-h-[70vh] bg-[#fffdf8]
-         py-16 px-4 sm:py-24 sm:px-8 lg:py-[22rem] lg:px-[22rem]">
+         py-16 px-4 sm:py-24 sm:px-8 lg:py-[18rem] lg:px-[22rem]">
 
     <!-- Background Image -->
     <img
