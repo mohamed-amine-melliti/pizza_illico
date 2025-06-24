@@ -522,9 +522,9 @@ color: #FFF;
     
 }
  .slider-active .slick-dots li.slick-active button {
-   background: #FFCE1C;
-     color: #000;
-      border:3px solid #FFCE1C;
+   background: #e30613;
+     color: #ffffff;
+      border:3px solid #ffffff;
 }
 .slider-active .slick-dots li.slick-active button::before {
     background: url("../img/bg/active-dote.png");
@@ -695,7 +695,7 @@ margin-top: -145px;
 	font-size: 16px;
 }
 .breadcrumb > .active {
-	color: #FFCE1C;
+	color: #e30613;
 	font-weight: 500;
 }
 /* 3. slider */
