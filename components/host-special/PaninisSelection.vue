@@ -37,12 +37,21 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { PaninisSelection } from '~/data/paninis';
 
-const emit = defineEmits(['menuSelectionSelected']);
+// Define the emit event
+const emit = defineEmits<{
+  (event: 'menuSelectionSelected', payload: {
+    selected: { index: number; name: string; price: number }[];
+    totalPrice: number;
+  }): void;
+}>();
+
+// Selected paninis index list
 const selectedMenuItems = ref<number[]>([]);
 
+// Emit selected paninis and total price to parent
 function emitSelection() {
   const selected = selectedMenuItems.value.map(index => {
     const item = PaninisSelection[index];
@@ -61,6 +70,7 @@ function emitSelection() {
   });
 }
 
+// Handle selection toggle
 function selectMenuItem(index: number) {
   if (selectedMenuItems.value.includes(index)) {
     selectedMenuItems.value = selectedMenuItems.value.filter(i => i !== index);
@@ -68,6 +78,7 @@ function selectMenuItem(index: number) {
     selectedMenuItems.value.push(index);
   }
 
-  emitSelection();
+  emitSelection(); // Emit updated selection on change
 }
+
 </script>

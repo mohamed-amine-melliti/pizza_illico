@@ -72,15 +72,21 @@ function handleTexmexSelection(payload: { selected: typeof selectedTexmexItems.v
   texmexTotalPrice.value = payload.totalPrice;
 }
 
-function handlePaniniSelection(payload: { selected: typeof selectedPaninis.value; totalPrice: number }) {
-  selectedPaninis.value = payload.selected;
-  paniniTotalPrice.value = payload.totalPrice;
-}
+// function handlePaniniSelection(payload: { selected: typeof selectedPaninis.value; totalPrice: number }) {
+//   selectedPaninis.value = payload.selected;
+//   paniniTotalPrice.value = payload.totalPrice;
+// }
 
 
 function handleTortillaUpdate(payload: { selected: typeof selectedTortillas.value; totalPrice: number }) {
   selectedTortillas.value = payload.selected;
   tortillaTotalPrice.value = payload.totalPrice;
+}
+
+
+function handlePaniniSelection({ selected, totalPrice }) {
+  console.log('Selected Paninis:', selected);
+  console.log('Total Price:', totalPrice);
 }
 // -----------------------
 // Category Logic
@@ -182,7 +188,7 @@ const ConfirmOrder = () => {
           <!-- Step 3: Pizza -->
           <div v-if="steps === STEPS.PIZZA">
             <Heading title="Choisir Vos Pizza Préférés ..." subTitle="Choisissez une ou plusieurs catégories" />
-            <PizzaSelection @PizzaSelectionUpdated="handlePizzaUpdate" />
+            <PizzaSelection @PizzaSelectionUpdated="pizzaSelectionChanged" />
 
             <div class="flex flex-col gap-4 md:flex-row pt-4">
               <Button label="Back" outline @click="onBack" />
@@ -213,7 +219,7 @@ const ConfirmOrder = () => {
           <!-- Step 5: Panini -->
           <div v-if="steps === STEPS.PANINI">
             <Heading title="Choisir Vos Paninis Préférés ..." subTitle="Choisissez une ou plusieurs catégories" />
-            <PaninisSelection/>
+            <PaninisSelection  @menuSelectionSelected="handlePaniniSelection"/>
             <div class="flex flex-col gap-4 md:flex-row pt-4">
               <Button label="Back" outline @click="onBack" />
               <Button style="background-color: blue;" label="Next" @click="handleNext" />

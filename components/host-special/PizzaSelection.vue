@@ -66,7 +66,7 @@
               v-for="(qty, size) in sizes"
               :key="size"
               class="ml-2"
-            >{{ size }} × {{ qty }}</span>
+            >{{ size }} × {{ qty }} </span>
           </li>
         </ul>
       </div>
@@ -149,6 +149,8 @@ function emitSelection() {
       total += Number(price) * Number(qty);
     }
   }
+
+  console.log('Total Price:', total);
 
   emit('pizzaSelectionChanged', {
     data: selectedPizzaData.value,
